@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Navbar = () => 
-     <nav className="nav-extended">
+     <nav className="Navbar" data-test="Navbar">
         <div className="nav-wrapper black">
             <div className="container">
-                <div className="title center">Formstack Assignment</div>
+                <div className="title center" data-test="title">Formstack Assignment</div>
             </div>
         </div>
     </nav>
