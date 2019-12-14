@@ -8,20 +8,24 @@ const ItemList = ({
     items,
     removeItem,
     selectItem
-}) => 
-    <div className="item-list  " data-test="ItemListComponent">
-        <ul className="collection">
-            {items.map((item, i) => 
-                <Item 
-                    key={i} 
-                    item={item} 
-                    removeItem={removeItem}
-                    selectItem={selectItem}
-                />
-            )}   
-        </ul>
-    </div>
-
+}) => {
+    
+    console.log(items.length)
+    return  items.length
+        ?   <div className="item-list  " data-test="ItemListComponent">
+                <ul className="collection">
+                    {items.map((item, i) => 
+                        <Item 
+                            key={i} 
+                            item={item} 
+                            removeItem={removeItem}
+                            selectItem={selectItem}
+                        />
+                    )}   
+                </ul>
+            </div>
+        : <h4 className="no-items center grey-text em" data-test="no-items"> Please add items to the list</h4>
+}
 export default connect(state => ({
     items: state.item.items
 }), dispatch => ({

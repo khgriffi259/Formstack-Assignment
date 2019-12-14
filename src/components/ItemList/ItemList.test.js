@@ -10,26 +10,48 @@ import Items from '../../data'
 const setUp = (initialState = {}) => {
     const store = createStore(rootReducer, initialState)
     const component = shallow(<ItemList store={store} />).childAt(0).dive()
-    console.log(component.debug())
     return component
 }
 
 describe('Item-list component', () => {
 
-    let wrapper;
-    beforeEach(() => {
-        const initialState = {
-            item: {
-                items: Items,
-                sorted: 'CreatedAt'
+    describe('has items to display', () => {
+
+        let wrapper;
+        beforeEach(() => {
+            const initialState = {
+                item: {
+                    items: Items,
+                    sorted: 'CreatedAt'
+                }
             }
-        }
-        wrapper = setUp(initialState)
+            wrapper = setUp(initialState)
+        })
+
+        it('should render without errors', () => {
+            const component = findByTestAttr(wrapper, 'ItemListComponent')
+            expect(component.length).toBe(1)
+        })
+    
     })
 
-    it('should render without errors', () => {
-        const component = findByTestAttr(wrapper, 'ItemListComponent')
-        expect(component.length).toBe(1)
+    describe('no items to display', () => {
+
+        let wrapper;
+        beforeEach(() => {
+            const initialState = {
+                item: {
+                    items: [],
+                    sorted: 'CreatedAt'
+                }
+            }
+            wrapper = setUp(initialState)
+        })
+
+
+        it('should render no-items div if there are no items to display', () => {
+            const component = findByTestAttr(wrapper, 'no-items')
+            expect(component.length).toBe(1)
+        })
     })
-    
 })
