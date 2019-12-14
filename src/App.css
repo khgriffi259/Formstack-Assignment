@@ -3,7 +3,22 @@
   padding: 0;
 }
 
-.title {
+nav .title {
   font-size: 2.1rem;
   width: 100%;
+}
+
+.item-icon {
+  margin: 0 1rem !important;
+  cursor: pointer;
+}
+.item-icon:hover {
+  color: blue !important;
+}
+.item-title-text {
+  font-size: 1.4rem;
+}
+
+.sort-items {
+  /* width: 200px !important; */
 }

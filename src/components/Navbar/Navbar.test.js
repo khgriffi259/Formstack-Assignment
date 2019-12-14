@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Navbar from './index'
 import { findByTestAttr } from '../../../Utils'
+
 const setUp = (props = {}) => {
     const component = shallow(<Navbar {...props} />)
     return component
@@ -15,12 +16,12 @@ describe('Navbar component', () => {
     })
 
     it('should render without errors', () => {
-        const wrapper = findByTestAttr(component, 'Navbar')
+        const wrapper = findByTestAttr(component, 'NavbarComponent')
         expect(wrapper.length).toBe(1)
     })
     
     it('should render a title', () => {
-        const wrapper = findByTestAttr(component, 'title')
+        const wrapper = findByTestAttr(component, 'navbar-title')
         expect (wrapper.length).toBe(1)
     })
 
