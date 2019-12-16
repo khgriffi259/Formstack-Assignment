@@ -1,3 +1,3 @@
-1) close repository to your machine
+1) clone repository to your machine
 2) run npm install from the command line
 3) type npm start to run the project
