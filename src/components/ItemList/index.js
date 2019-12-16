@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import Items from '../../data'
 import Item from '../Item'
 import { removeItem, selectItem } from '../../store/actions'
+import { getSortedRooms } from '../../store/reducers'
+// import { createSelector } from 'reselect'
 
 const ItemList = ({
     items,
@@ -10,7 +12,6 @@ const ItemList = ({
     selectItem
 }) => {
     
-    console.log(items.length)
     return  items.length
         ?   <div className="item-list  " data-test="ItemListComponent">
                 <ul className="collection">
@@ -27,8 +28,9 @@ const ItemList = ({
         : <h4 className="no-items center grey-text em" data-test="no-items"> Please add items to the list</h4>
 }
 export default connect(state => ({
-    items: state.item.items
+    items: getSortedRooms(state)
 }), dispatch => ({
     removeItem: id => dispatch(removeItem(id)),
     selectItem: id => dispatch(selectItem(id)),
 }))(ItemList)
+

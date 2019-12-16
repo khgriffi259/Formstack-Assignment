@@ -2,6 +2,7 @@ import React from 'react'
 import { ADD_ITEM, REMOVE_ITEM, SORT_ITEMS, SELECT_ITEM } from '../../actionTypes'
 import itemReducer from './index'
 import Items from '../../../data'
+import { selectItemList, selectSortMethod, getSortedRooms } from '../../reducers/item'
 
 describe('Item Reducer', () => {
 
@@ -23,7 +24,27 @@ describe('Item Reducer', () => {
         })
 
         expect(newState).toEqual({
-            items: [...Items, newItem].sort((a, b) => b.createdAt - a.createdAt), 
+            items: [
+            {
+                id: 1,
+                title: "apple",
+                createdAt: new Date("10-12-1979"),
+                active: true
+            },
+            {
+                id: 2,
+                title: "banana",
+                createdAt: new Date("10-12-1999"),
+                active: false
+            },
+            {
+                id: 3,
+                title: "carrot",
+                createdAt: new Date("10-12-2019"),
+                active: false
+            },
+            newItem
+        ],
             sortMethod: 'CreatedAt'
         })
     })
@@ -55,16 +76,20 @@ describe('Item Reducer', () => {
     it('should sort items based on sortMethod if SORT_ITEMS type received',() => {
         const newState = itemReducer(undefined, {
             type: SORT_ITEMS, 
-            payload: 'CreatedAt'
+            payload: 'Title'
         })
 
+        selectItemList(newState)
+        selectSortMethod(newState)
+        getSortedRooms(newState)
+        
         expect(newState).toEqual({
             items:  [ 
                 {
-                    id: 3,
-                    title: "carrot",
-                    createdAt: new Date("10-12-2019"),
-                    active: false
+                    id: 1,
+                    title: "apple",
+                    createdAt: new Date("10-12-1979"),
+                    active: true
                 },
                 {
                     id: 2,
@@ -73,13 +98,13 @@ describe('Item Reducer', () => {
                     active: false
                 },
                 {
-                    id: 1,
-                    title: "apple",
-                    createdAt: new Date("10-12-1979"),
-                    active: true
+                    id: 3,
+                    title: "carrot",
+                    createdAt: new Date("10-12-2019"),
+                    active: false
                 },
             ],
-            sortMethod: 'CreatedAt'
+            sortMethod: 'Title'
         })
     })
 
