@@ -1,3 +1,4 @@
 1) clone repository to your machine
 2) run npm install from the command line
 3) type npm start to run the project
+4) type npm test to run the tests. 
